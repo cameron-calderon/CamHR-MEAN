@@ -1,0 +1,98 @@
+<mat-card>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        typer="text"
+        name="name"
+        ngModel
+        required
+        placeholder="Name"
+        #name="ngModel"
+      />
+      <mat-error *ngIf="name.invalid">Please enter a name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        typer="text"
+        name="grossPay"
+        ngModel
+        required
+        placeholder="Gross Pay"
+        #grossPay="ngModel"
+      />
+      <mat-error *ngIf="grossPay.invalid">Please enter gross pay</mat-error>
+      <span matSuffix>.00</span>
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        typer="text"
+        name="stateIncome"
+        ngModel
+        required
+        placeholder="State Income Tax"
+        #stateIncome="ngModel"
+      />
+      <mat-error *ngIf="stateIncome.invalid"
+        >Please enter state income tax</mat-error
+      >
+      <span matSuffix>%</span>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        typer="text"
+        name="fedMarginalRate"
+        ngModel
+        required
+        placeholder="Federal Tax Marginal Rate"
+        #fedMarginalRate="ngModel"
+      />
+      <mat-error *ngIf="fedMarginalRate.invalid"
+        >Please enter federal tax marginal rate</mat-error
+      >
+      <span matSuffix>%</span>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        typer="text"
+        name="deferallRate"
+        ngModel
+        required
+        placeholder="Deferall Rate"
+        #deferallRate="ngModel"
+      />
+      <mat-error *ngIf="deferallRate.invalid"
+        >Please enter deferall/401k rate</mat-error
+      >
+      <span matSuffix>%</span>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="calculatePost(postForm)"
+    >
+      Save & Calculate
+    </button>
+    <mat-list>
+      <mat-action-list
+        style="
+          font-size: 25px;
+          height: 25px;
+          padding-top: 25px;
+          padding-bottom: 25px;
+        "
+      >
+        Net Pay: ${{ netPay }}.00
+      </mat-action-list>
+      <mat-action-list>
+        <button mat-raised-button (click)="resetNetPay(postForm)">Clear</button>
+      </mat-action-list>
+    </mat-list>
+  </form>
+</mat-card>

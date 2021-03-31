@@ -1,0 +1,15 @@
+<mat-accordion multi="true" *ngIf="posts.length > 0">
+  <mat-expansion-panel *ngFor="let post of posts">
+    <mat-expansion-panel-header> {{ post.name }} </mat-expansion-panel-header>
+    <p>Gross Pay: ${{ post.grossPay }}.00</p>
+    <p>State Income Tax: {{ post.stateIncome }}%</p>
+    <p>Federal Tax Margin Rate: {{ post.fedMarginalRate }}%</p>
+    <p>Deferall Plan/401k Rate: {{ post.deferallRate }}%</p>
+    <mat-action-row *ngIf="userIsAuthenticated">
+      <button mat-button color="warn" (click)="onDelete(post.id!)">
+        Remove
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0">No posts added yet</p>
